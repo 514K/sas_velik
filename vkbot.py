@@ -1,31 +1,31 @@
 def write_msg(user_id, message):
     vk.method('messages.send', {'user_id': user_id, 'message': message})
 
-# API-ключ созданный ранее
-token = "6a9c267cd469388709a9e9acaddbe0aa81a0abbf12239b3e597a31729ffbddb9c88e80a443554c918b8f7"
+# API-РєР»СЋС‡ СЃРѕР·РґР°РЅРЅС‹Р№ СЂР°РЅРµРµ
+token = "b76a32e972f618e9b066b0f637bdb33178c9c1bff79ba99620032cb54debea334b0072a2d940363711409"
 
-# Авторизуемся как сообщество
+# РђРІС‚РѕСЂРёР·СѓРµРјСЃСЏ РєР°Рє СЃРѕРѕР±С‰РµСЃС‚РІРѕ
 vk = vk_api.VkApi(token=token)
 
-# Работа с сообщениями
+# Р Р°Р±РѕС‚Р° СЃ СЃРѕРѕР±С‰РµРЅРёСЏРјРё
 longpoll = VkLongPoll(vk)
 
-# Основной цикл
+# РћСЃРЅРѕРІРЅРѕР№ С†РёРєР»
 for event in longpoll.listen():
 
-    # Если пришло новое сообщение
+    # Р•СЃР»Рё РїСЂРёС€Р»Рѕ РЅРѕРІРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ
     if event.type == VkEventType.MESSAGE_NEW:
     
-        # Если оно имеет метку для меня( то есть бота)
+        # Р•СЃР»Рё РѕРЅРѕ РёРјРµРµС‚ РјРµС‚РєСѓ РґР»СЏ РјРµРЅСЏ( С‚Рѕ РµСЃС‚СЊ Р±РѕС‚Р°)
         if event.to_me:
         
-            # Сообщение от пользователя
+            # РЎРѕРѕР±С‰РµРЅРёРµ РѕС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
             request = event.text
             
-            # Каменная логика ответа
-            if request == "привет":
-                write_msg(event.user_id, "Хай")
-            elif request == "пока":
-                write_msg(event.user_id, "Пока((")
+            # РљР°РјРµРЅРЅР°СЏ Р»РѕРіРёРєР° РѕС‚РІРµС‚Р°
+            if request == "РїСЂРёРІРµС‚":
+                write_msg(event.user_id, "РҐР°Р№")
+            elif request == "РїРѕРєР°":
+                write_msg(event.user_id, "РџРѕРєР°((")
             else:
-                write_msg(event.user_id, "Не поняла вашего ответа...")
+                write_msg(event.user_id, "РќРµ РїРѕРЅСЏР»Р° РІР°С€РµРіРѕ РѕС‚РІРµС‚Р°...")
